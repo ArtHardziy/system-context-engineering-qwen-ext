@@ -16,10 +16,13 @@ const requiredFiles = [
   "qwen-extension.json",
   "commands/system-context-engineering.md",
   "commands/system-context-engineering-check.md",
+  "commands/system-context-engineering-update.md",
   "commands/system-context-engineering-task.md",
   `${skillRoot}/SKILL.md`,
   `${skillRoot}/agents/openai.yaml`,
   `${skillRoot}/scripts/collect-service-contexts.mjs`,
+  `${skillRoot}/scripts/check-system-context.mjs`,
+  `${skillRoot}/references/documentation-lifecycle.md`,
   `${skillRoot}/references/system-context-contract.md`,
   `${skillRoot}/references/system-completeness-gates.md`,
 ];
@@ -58,6 +61,7 @@ for (const term of [
   "SERVICE-INDEX.json",
   "system-context-state.json",
   "collect-service-contexts.mjs",
+  "check-system-context.mjs",
   "progressive disclosure",
 ]) {
   if (!skill.toLowerCase().includes(term.toLowerCase())) {
@@ -68,6 +72,7 @@ for (const term of [
 for (const commandName of [
   "system-context-engineering.md",
   "system-context-engineering-check.md",
+  "system-context-engineering-update.md",
   "system-context-engineering-task.md",
 ]) {
   const command = await readFile(

@@ -1,7 +1,7 @@
 {
   "name": "@protone/system-context-engineering",
-  "version": "0.1.0",
-  "description": "Qwen Code extension for aggregating microservice repository context into a system map and routing index.",
+  "version": "0.2.0",
+  "description": "Qwen Code extension for building, updating, and checking microservice system context and routing documentation.",
   "license": "UNLICENSED",
   "files": [
     "qwen-extension.json",

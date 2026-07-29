@@ -1,4 +1,4 @@
 interface:
   display_name: "System Context Engineering"
-  short_description: "Aggregate microservice context into a system map"
-  default_prompt: "Use $system-context-engineering to build or refresh cross-service technical context from repository context packages."
+  short_description: "Build, update, and verify system context"
+  default_prompt: "Use $system-context-engineering to build, update, or check cross-service technical documentation from repository context packages."

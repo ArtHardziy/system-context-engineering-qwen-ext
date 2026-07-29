@@ -14,12 +14,30 @@ test("launchers are bounded and forward arguments", async () => {
   for (const name of [
     "system-context-engineering",
     "system-context-engineering-check",
+    "system-context-engineering-update",
     "system-context-engineering-task",
   ]) {
     const contents = await read(`commands/${name}.md`);
     assert.match(contents, /^---\ndescription: .+\n---\n/);
     assert.match(contents, /\{\{args}}/);
     assert.match(contents, /system-context-engineering/);
+  }
+});
+
+test("documentation lifecycle defines deterministic update and freshness states", async () => {
+  const lifecycle = await read(
+    "skills/system-context-engineering/references/documentation-lifecycle.md",
+  );
+  for (const term of [
+    "current",
+    "stale",
+    "partial",
+    "unknown",
+    "check-system-context.mjs",
+    "Save `.agent/system-context-state.json` only after",
+    "Do not rewrite documentation",
+  ]) {
+    assert.ok(lifecycle.includes(term), term);
   }
 });
 

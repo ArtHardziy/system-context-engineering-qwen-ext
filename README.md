@@ -25,12 +25,20 @@ From the directory containing the service repositories:
 After service documentation changes, run:
 
 ```text
-/system-context-engineering refresh .
+/system-context-engineering-update .
+```
+
+To verify freshness without changing documentation, run:
+
+```text
+/system-context-engineering-check .
 ```
 
 The extension creates a compact system entry point, technical specification,
 service catalog, machine-readable routing index, and a hashed freshness
-snapshot. Service specifications remain the canonical sources.
+snapshot. The check also validates service lifecycle quality, required system
+artifacts, local Markdown links, and routing-index document pointers. Service
+specifications remain the canonical sources.
 
 ## Validate and package
 

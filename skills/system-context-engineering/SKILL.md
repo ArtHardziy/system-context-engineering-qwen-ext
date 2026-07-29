@@ -1,6 +1,6 @@
 ---
 name: system-context-engineering
-description: Aggregate evidence-backed repository context from multiple microservice repositories into a compact system-level specification, cross-service dependency map, and task-routing index. Use when a workspace contains several services already documented by repo-context-engineering and Codex or Qwen Code needs to understand service ownership, contracts, data flows, dependencies, or change impact without loading every service specification.
+description: Aggregate, update, and verify evidence-backed repository context from multiple microservice repositories as a compact system specification, cross-service dependency map, and task-routing index. Use when a workspace contains several services documented by repo-context-engineering and Codex or Qwen Code needs to build or refresh system documentation, check whether aggregate documentation is current, or understand service ownership, contracts, data flows, dependencies, and change impact without loading every service specification.
 ---
 
 # System Context Engineering
@@ -63,6 +63,11 @@ and one exact next action.
     stale, dirty, diverged, partial, unknown, or missing mandatory artifacts.
 
 ## Bootstrap and refresh workflow
+
+Read
+[references/documentation-lifecycle.md](references/documentation-lifecycle.md)
+completely before `refresh`. It defines incremental update scope, snapshot
+ordering, freshness states, and write restrictions.
 
 ### 1. Inventory context packages
 
@@ -165,13 +170,23 @@ context is current and complete. Otherwise report `partial` and list exact gaps.
 
 ## Check workflow
 
-Run the collector with `--check`. Exit code `0` means source artifacts match the
-saved snapshot; exit code `2` means the aggregate is stale; exit code `1` means
-the snapshot or invocation is invalid.
+Read
+[references/documentation-lifecycle.md](references/documentation-lifecycle.md)
+completely before `check`. Run the bundled checker:
 
-Also validate links from `AGENTS.md` and `docs/system/`. Do not rewrite
-documentation during `check`. Report added, removed, and changed services or
-artifacts, plus the exact refresh command.
+```text
+node scripts/check-system-context.mjs --root <workspace-root>
+```
+
+The checker compares the source snapshot, enforces source lifecycle quality,
+checks mandatory aggregate artifacts, validates local links from `AGENTS.md`
+and `docs/system/`, and verifies routing-index document pointers. Exit code `0`
+means `current`; exit code `2` means `stale`, `partial`, or `unknown`; exit code
+`1` means invalid input or data.
+
+Do not rewrite documentation during `check`. Report added, removed, and changed
+services or artifacts, source-quality and aggregate-integrity gaps, plus the
+exact update command.
 
 ## Task-context workflow
 
